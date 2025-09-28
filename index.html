@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LotoMAISFacil</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #F5F5F5; /* Cinza claro, suave */
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .trevo {
+            margin: 20px auto;
+            width: 100px;
+            opacity: 0.8;
+        }
+        h1 {
+            color: #006633; /* Verde escuro, inspirado em loterias */
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        h2 {
+            color: #006633;
+            font-weight: 700;
+            margin-top: 20px;
+        }
+        p {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .intro-text {
+            background-color: #FFFFFF;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .intro-text strong {
+            color: #006633;
+            font-weight: 700;
+        }
+        .time-update {
+            color: #006633;
+            font-style: italic;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+        .legend-container {
+            margin: 10px 0;
+        }
+        .legend-text {
+            background-color: #FFFFFF;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            color: #333;
+        }
+        table {
+            border-collapse: collapse;
+            margin: 20px auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        th, td {
+            border: 1px solid #DDEEDD; /* Verde claro para bordas */
+            padding: 12px;
+            text-align: center;
+        }
+        th {
+            background-color: #4CAF50; /* Verde suave para cabeçalhos */
+            color: #FFFFFF;
+            font-weight: 700;
+        }
+        #valor-celula, #valor-celula2 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #FFD700; /* Dourado para destaque */
+        }
+        /* Tabela 2: Colunas alternadas */
+        #tabela-dados2 td:nth-child(odd) {
+            background-color: #006633; /* Verde escuro */
+            font-weight: 700;
+            color: #FFFFFF;
+        }
+        #tabela-dados2 td:nth-child(even) {
+            background-color: #FFFFFF; /* Branco para gradiente */
+        }
+        #tabela-dados2 {
+            width: 70%;
+        }
+        /* Tabela 3: Colunas alternadas */
+        #tabela-dados3 td:nth-child(odd) {
+            background-color: #006633; /* Verde escuro */
+            font-weight: 700;
+            color: #FFFFFF;
+        }
+        #tabela-dados3 td:nth-child(even) {
+            background-color: #FFFFFF; /* Branco para gradiente */
+            color: #006633; /* Texto verde escuro */
+        }
+        #tabela-dados3 {
+            width: 70%;
+        }
+        /* Tabela 4: Colunas alternadas */
+        #tabela-dados4 td:nth-child(odd) {
+            background-color: #E6F0FA; /* Azul claro */
+            color: #333;
+        }
+        #tabela-dados4 td:nth-child(even) {
+            background-color: #FFFFFF; /* Branco */
+            color: #333;
+        }
+        #tabela-dados4 {
+            width: 30%;
+        }
+        /* Tabela 5: Colunas alternadas (idêntica à Tabela 2) */
+        #tabela-dados5 td:nth-child(odd) {
+            background-color: #006633; /* Verde escuro */
+            font-weight: 700;
+            color: #FFFFFF;
+        }
+        #tabela-dados5 td:nth-child(even) {
+            background-color: #FFFFFF; /* Branco para gradiente */
+        }
+        #tabela-dados5 {
+            width: 70%;
+        }
+        /* Tabela 6: Colunas alternadas (idêntica à Tabela 2) */
+        #tabela-dados6 td:nth-child(odd) {
+            background-color: #006633; /* Verde escuro */
+            font-weight: 700;
+            color: #FFFFFF;
+        }
+        #tabela-dados6 td:nth-child(even) {
+            background-color: #FFFFFF; /* Branco para gradiente */
+        }
+        #tabela-dados6 {
+            width: 70%;
+        }
+        #concurso, #concurso2 {
+            width: 30%;
+            margin: 20px auto;
+            background-color: #FFFFFF;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        #concurso td, #concurso2 td {
+            text-align: left;
+            padding: 12px;
+        }
+        .erro {
+            color: #D32F2F; /* Vermelho para erros */
+            margin-top: 10px;
+            font-size: 14px;
+        }
+        .credits {
+            margin-top: 20px;
+            color: #666;
+            font-size: 12px;
+        }
+        /* Transições suaves para interatividade */
+        td, th {
+            transition: background-color 0.3s ease;
+        }
+        td:hover {
+            filter: brightness(95%);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="trevo.png" alt="Trevo de quatro folhas" class="trevo">
+        <h1>LotoMAISFacil</h1>
+        <div class="intro-text">
+            <strong>Descubra os Segredos da Lotofácil com a LotoMAISFacil!</strong><br>
+            Bem-vindo à sua ferramenta definitiva para aumentar suas chances no próximo sorteio! Aqui, você encontra uma análise detalhada dos números mais sorteados na Lotofácil, baseada em dados atualizados diretamente da nossa planilha. Explore as estatísticas, identifique padrões e tome decisões mais estratégicas. Atualize sua sorte hoje mesmo – comece agora!
+        </div>
+        <div class="time-update" id="time-update">Última atualização: Carregando...</div>
+
+        <table id="concurso">
+            <tr>
+                <td><h2>Resultado do último Concurso</h2></td>
+                <td><div id="valor-celula">Carregando...</div></td>
+            </tr>
+        </table>
+        <div id="mensagem-erro" class="erro"></div>
+        <table id="tabela-dados4">
+            <tbody id="corpo-tabela4"></tbody>
+        </table>
+        <div id="mensagem-erro4" class="erro"></div>
+
+        <table id="concurso2">
+            <tr>
+                <td><h2>Número da sorte</h2></td>
+                <td><div id="valor-celula2">Carregando...</div></td>
+            </tr>
+        </table>
+        <div id="mensagem-erro2-celula" class="erro"></div>
+
+        <p>Contagem total de números sorteados em 20 concursos.</p>
+        <table id="tabela-dados1">
+            <thead>
+                <tr id="cabecalho1"></tr>
+            </thead>
+            <tbody id="corpo-tabela1"></tbody>
+        </table>
+        <div id="mensagem-erro1" class="erro"></div>
+        <div class="legend-container">
+            <div class="legend-text">
+                <p><strong>Legenda das Tabelas:</strong><br>
+                - Colunas em <span style="background-color: #006633; color: #FFFFFF; padding: 2px 5px;">verde escuro</span> representam os números da cartela da Lotofácil.<br>
+                - Colunas coloridas indicam a frequência dos números sorteados: <span style="background-color: #00FF00; padding: 2px 5px;">verde</span> para os mais sorteados e <span style="background-color: #FF0000; padding: 2px 5px;">vermelho</span> para os menos sorteados.</p>
+            </div>
+        </div>
+        <h2>Em 5 concursos</h2>
+        <p>Dados dos números sorteados nos últimos 5 concursos.</p>
+        <table id="tabela-dados2">
+            <tbody id="corpo-tabela2"></tbody>
+        </table>
+        <div id="mensagem-erro2" class="erro"></div>
+
+        <h2>Em 10 concursos</h2>
+        <p>Dados adicionais dos concursos.</p>
+        <table id="tabela-dados3">
+            <tbody id="corpo-tabela3"></tbody>
+        </table>
+        <div id="mensagem-erro3" class="erro"></div>
+
+        <h2>Em 15 concursos</h2>
+        <p>Dados dos números sorteados nos próximos 5 concursos.</p>
+        <table id="tabela-dados5">
+            <tbody id="corpo-tabela5"></tbody>
+        </table>
+        <div id="mensagem-erro5" class="erro"></div>
+
+        <h2>Em 20 concursos</h2>
+        <p>Dados dos números sorteados nos últimos 5 concursos adicionais.</p>
+        <table id="tabela-dados6">
+            <tbody id="corpo-tabela6"></tbody>
+        </table>
+        <div id="mensagem-erro6" class="erro"></div>
+        <div class="credits">
+            <p>Desenvolvido por Filipi Santos</p>
+        </div>
+    </div>
+
+    <script>
+        const apiKey = 'AIzaSyDT0RDGkIHaldViSBxt1XJhdTPjnbBbhjM'; // Sua chave de API
+        const spreadsheetId = '1GJYFzUEZU6h8MPhs04p-T5A5OeuXpXKklyWTJJrh8qg'; // ID da planilha
+        const range = 'results!D1'; // Célula para último concurso
+        const rangeCampeao = 'qntd!V5'; // Célula para número da sorte
+        const range1 = 'Qntd!A1:Z2'; // Tabela 1
+        const range2 = 'qntd!A4:J8'; // Tabela 2
+        const range3 = 'qntd!A10:J14'; // Tabela 3
+        const range4 = 'results!F1:J3'; // Tabela 4
+        const range5 = 'qntd!A16:J20'; // Tabela 5
+        const range6 = 'qntd!A22:J26'; // Tabela 6
+
+        // Função para calcular a cor do gradiente com base no valor
+        function calcularCorGradiente(valor, min, max) {
+            if (isNaN(valor) || min === max) {
+                return 'rgb(255, 255, 255)'; // Branco para valores inválidos ou intervalo uniforme
+            }
+            const ratio = (valor - min) / (max - min); // Normalizar entre 0 e 1
+            let r, g;
+            if (ratio <= 0.5) {
+                // Vermelho (255, 0, 0) -> Amarelo (255, 255, 0)
+                r = 255;
+                g = Math.round(255 * (ratio / 0.5));
+            } else {
+                // Amarelo (255, 255, 0) -> Verde (0, 255, 0)
+                r = Math.round(255 * (1 - (ratio - 0.5) / 0.5));
+                g = 255;
+            }
+            return `rgb(${r}, ${g}, 0)`;
+        }
+
+        // Função para atualizar a data e hora
+        function updateTime() {
+            const timeElement = document.getElementById('time-update');
+            const now = new Date();
+            const options = { 
+                hour: '2-digit', 
+                minute: '2-digit', 
+                second: '2-digit', 
+                timeZone: 'America/Sao_Paulo', 
+                hour12: false 
+            };
+            const timeString = now.toLocaleString('pt-BR', options);
+            timeElement.textContent = `Última atualização: ${timeString} (Horário de Brasília)`;
+        }
+
+        async function buscarValorCelula() {
+            const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${range}?key=${apiKey}`;
+            const valorCelula = document.getElementById('valor-celula');
+            const mensagemErro = document.getElementById('mensagem-erro');
+
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`Erro na API: ${response.status} - ${response.statusText}`);
+                }
+                const data = await response.json();
+
+                if (data.values && data.values.length > 0 && data.values[0].length > 0) {
+                    valorCelula.textContent = data.values[0][0]; // Exibe o valor da célula
+                } else {
+                    valorCelula.textContent = '';
+                    mensagemErro.textContent = `Nenhum dado encontrado na célula ${range}.`;
+                }
+            } catch (error) {
+                console.error(`Erro ao buscar célula ${range}:`, error);
+                valorCelula.textContent = '';
+                mensagemErro.textContent = `Erro: ${error.message}. Verifique a chave de API, o ID da planilha, o nome da aba e as permissões.`;
+            }
+        }
+
+        async function buscarValorCelula2() {
+            const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${rangeCampeao}?key=${apiKey}`;
+            const valorCelula2 = document.getElementById('valor-celula2');
+            const mensagemErro2 = document.getElementById('mensagem-erro2-celula');
+
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`Erro na API: ${response.status} - ${response.statusText}`);
+                }
+                const data = await response.json();
+
+                if (data.values && data.values.length > 0 && data.values[0].length > 0) {
+                    valorCelula2.textContent = data.values[0][0]; // Exibe o valor da célula
+                } else {
+                    valorCelula2.textContent = '';
+                    mensagemErro2.textContent = `Nenhum dado encontrado na célula ${rangeCampeao}.`;
+                }
+            } catch (error) {
+                console.error(`Erro ao buscar célula ${rangeCampeao}:`, error);
+                valorCelula2.textContent = '';
+                mensagemErro2.textContent = `Erro: ${error.message}. Verifique a chave de API, o ID da planilha, o nome da aba e as permissões.`;
+            }
+        }
+
+        async function carregarDadosTabela(range, cabecalhoId, corpoTabelaId, erroId) {
+            const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${range}?key=${apiKey}`;
+            const mensagemErro = document.getElementById(erroId);
+
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`Erro na API: ${response.status} - ${response.statusText}`);
+                }
+                const data = await response.json();
+
+                if (data.values && data.values.length > 0) {
+                    const corpoTabela = document.getElementById(corpoTabelaId);
+
+                    if (range === range1 && data.values.length > 1) {
+                        // Tabela 1: Cabeçalho e gradiente na linha de dados
+                        const cabecalho = data.values[0];
+                        const linhas = data.values.slice(1);
+                        const cabecalhoTabela = document.getElementById(cabecalhoId);
+                        cabecalho.forEach(titulo => {
+                            const th = document.createElement('th');
+                            th.textContent = titulo || '';
+                            cabecalhoTabela.appendChild(th);
+                        });
+
+                        const valores = linhas[0].map(val => parseFloat(val) || 0);
+                        const min = Math.min(...valores);
+                        const max = Math.max(...valores);
+
+                        const tr = document.createElement('tr');
+                        linhas[0].forEach((celula, index) => {
+                            const td = document.createElement('td');
+                            td.textContent = celula || '';
+                            const valor = parseFloat(celula) || 0;
+                            td.style.backgroundColor = calcularCorGradiente(valor, min, max);
+                            tr.appendChild(td);
+                        });
+                        corpoTabela.appendChild(tr);
+                    } else if ((range === range2 || range === range3 || range === range5 || range === range6) && data.values.length > 0) {
+                        // Tabelas 2, 3, 5 e 6: Gradiente nas colunas pares, sem cabeçalho
+                        const linhas = data.values;
+                        const colunasPares = [1, 3, 5, 7, 9]; // Índices 0-based das colunas pares
+                        const mins = {};
+                        const maxs = {};
+                        colunasPares.forEach(colIndex => {
+                            const valoresColuna = linhas.map(linha => {
+                                const valor = parseFloat(linha[colIndex]) || 0;
+                                return valor !== 0 ? valor : 1; // Evita valores zero que possam quebrar o gradiente
+                            });
+                            mins[colIndex] = Math.min(...valoresColuna);
+                            maxs[colIndex] = Math.max(...valoresColuna);
+                        });
+
+                        linhas.forEach(linha => {
+                            const tr = document.createElement('tr');
+                            linha.forEach((celula, colIndex) => {
+                                const td = document.createElement('td');
+                                td.textContent = celula || '';
+                                if (colunasPares.includes(colIndex)) {
+                                    const valor = parseFloat(celula) || 1; // Valor padrão 1 se inválido
+                                    td.style.backgroundColor = calcularCorGradiente(valor, mins[colIndex], maxs[colIndex]);
+                                }
+                                tr.appendChild(td);
+                            });
+                            corpoTabela.appendChild(tr);
+                        });
+                    } else {
+                        // Tabela 4: Preenchimento padrão, sem cabeçalho
+                        const linhas = data.values;
+                        linhas.forEach(linha => {
+                            const tr = document.createElement('tr');
+                            linha.forEach(celula => {
+                                const td = document.createElement('td');
+                                td.textContent = celula || '';
+                                tr.appendChild(td);
+                            });
+                            corpoTabela.appendChild(tr);
+                        });
+                    }
+                } else {
+                    mensagemErro.textContent = `Nenhum dado encontrado no intervalo ${range}. Verifique o intervalo ou se a planilha contém dados.`;
+                }
+            } catch (error) {
+                console.error(`Erro ao carregar dados do intervalo ${range}:`, error);
+                mensagemErro.textContent = `Erro: ${error.message}. Verifique a chave de API, o ID da planilha, o nome da aba e as permissões.`;
+            }
+        }
+
+        // Carregar dados para as células e as tabelas
+        async function carregarTudo() {
+            await buscarValorCelula();
+            await buscarValorCelula2();
+            await carregarDadosTabela(range1, 'cabecalho1', 'corpo-tabela1', 'mensagem-erro1');
+            await carregarDadosTabela(range2, 'cabecalho2', 'corpo-tabela2', 'mensagem-erro2');
+            await carregarDadosTabela(range3, 'cabecalho3', 'corpo-tabela3', 'mensagem-erro3');
+            await carregarDadosTabela(range4, 'cabecalho4', 'corpo-tabela4', 'mensagem-erro4');
+            await carregarDadosTabela(range5, 'cabecalho5', 'corpo-tabela5', 'mensagem-erro5');
+            await carregarDadosTabela(range6, 'cabecalho6', 'corpo-tabela6', 'mensagem-erro6');
+            updateTime(); // Atualiza a hora ao carregar
+        }
+
+        // Atualizar a hora a cada minuto
+        setInterval(updateTime, 60000);
+
+        // Chamar a função ao carregar a página
+        window.onload = carregarTudo;
+    </script>
+</body>
+</html>
